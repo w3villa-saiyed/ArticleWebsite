@@ -1,0 +1,97 @@
+
+<div>
+
+  <div class="container-fluid position-fixed bg-white" style="z-index: 1;">
+    <div class="row">
+      <div class="col mt-4 px-5">
+        <h4>Raskai</h4>
+      </div>
+      <div class="col">
+        <div class="container ">
+          <h1 class="text-center mt-3 " style="margin-right: 60px;">View Articles</h1>
+        </div>
+      </div>
+      <div class="col">
+        <ul class="list-unstyled float-end mt-3">
+          <% if account_signed_in? %>
+
+          <li><%= link_to "logout", "/accounts/sign_out",  :class => " text-dark text-decoration-none px-5", method: :delete %>
+           <li><%=  current_account.email  %>
+             <% else %>
+             <li><%= link_to "Signup", "/accounts/sign_up", :class => "float-end text-dark text-decoration-none px-3" %>
+              <li><%= link_to "Login", "/accounts/sign_in", :class => "float-end text-dark text-decoration-none" %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col-3 mt-5 " style="margin-top: 100px !important;">
+              <div class="category mt-5 position-fixed mt-5 tm">
+                <a href="#" class="list-group-item list-group-item-action active bg-dark" aria-current="true">
+                  Categories
+                </a>
+                <% @categories.each do |category| %>
+                <ul class="list-group  list-unstyled">
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto ">
+                      <div class="fw-bold"><%= link_to category.category, articles_path(:cate=> category.id), :class=>"text-decoration-none " %></div>
+                    </div>
+                    <span class="badge bg-primary rounded-pill mx-3 "><%= category.articles.count %></span></li>
+                  </ul>
+                  <% end %>
+                  <div class="allcategory mt-2 px-3">
+                  <%= link_to "All Categories", articles_path %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-6 ">
+                <div class=" mt-5   d-flex justify-content-center">
+                  <div class=" px-5">
+                    <% @articles.each do |article| %>
+                    <div class="card ftn mt-5 justify-content-center">
+                      <%= link_to article do %>
+                      <%= image_tag article.avatar, :class=>"card-img-top"  if article.avatar.attached? %>
+                      <% end %>
+                      <div class="card-body">
+                        <%= link_to article.title, article, :class=>"text-decoration-none" %><br>
+                        <small>Category: 
+                          <%= link_to article.category.category,  article, :class=>"text-decoration-none" %><br>
+                        </small>
+                        <small>Created by: <%= article.account.email if article.account %>,
+                          <%= time_ago_in_words(article.created_at) %> ago, 
+                          last updated: <%= time_ago_in_words(article.updated_at) %> ago</small>
+                        </div></div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3 mt-5" style="margin-top: 100px !important;">
+                    <div class="event mt-5 position-fixed mx-5">
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item ">Events</li>
+                        <li class="list-group-item">
+                          <div class=" text-center">
+                           <%= link_to "create Article..", new_article_path, :class=>"text-decoration-none" %>
+                         </div>
+                       </li>
+                       <li class="list-group-item">
+                         <div class="input-group mb-4">
+                          <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon5" class="form-control">
+                          <div class="input-group-append sm">
+                            <button id="button-addon5" type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>          
+          </div>

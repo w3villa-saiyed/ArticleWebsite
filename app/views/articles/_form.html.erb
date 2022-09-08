@@ -1,0 +1,24 @@
+<%= form_with model: article  do |form| %>
+  
+
+
+    <%= form.label :avatar %><br>
+    <%= form.file_field :avatar %><br>
+
+
+
+    <%= form.label :title %><br>
+    <%= form.text_field :title %><br>
+    
+
+  
+    <%= form.label :body %><br>
+    <%= form.rich_text_area :body %><br>
+    
+     <%= form.label :Category %><br>
+    <%= form.select :category_id,  Category.all.map{|c| [c.category, c.id]} %><br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<h1>Show Articles</h1>
+<h1><%= image_tag @article.avatar, :size => '260x180'  if @article.avatar.attached? %></h1>
+<h1><%=  @article.title %></h1>
+<h1><%=  @article.body %></h1>
+<small><%=  @article.category.category %></small>
+<ul>
+
+  <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+   <li><%= link_to "back", articles_path  %></li>               
+</ul>
