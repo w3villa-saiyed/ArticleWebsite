@@ -2,9 +2,9 @@ class ArticlesController < ApplicationController
 
   def index
     @categories = Category.all
-    cate = params[:cate]
-    if !cate.nil?
-      @articles = Article.where(:category_id => cate)
+    category = params[:category]
+    if !category.nil?
+      @articles = Article.where(:category_id => category)
     else
     @articles = Article.all.reverse()
   end
@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    # binding.pry
     @article = Article.find(params[:id])
   end
 

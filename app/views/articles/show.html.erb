@@ -1,14 +1,61 @@
-<h1>Show Articles</h1>
-<h1><%= image_tag @article.avatar, :size => '260x180'  if @article.avatar.attached? %></h1>
-<h1><%=  @article.title %></h1>
-<h1><%=  @article.body %></h1>
-<small><%=  @article.category.category %></small>
-<ul>
+<h1 class="text-center">Show Articles</h1>
+<div class="container">
+  <div class="card  mt-5 ">
+    <div class="card-body">
+      <small><%= image_tag @article.avatar, :class=>"card-img-top"  if @article.avatar.attached? %></small>
+      <div class="card-body">
+      <small><strong>Title :</strong> <%=  @article.title %></small><br>
+      <div class="container-fluid">
+      <small><strong>Body :</strong><%=  @article.body %></small>
+      </div>
+      <small><strong>Category :</strong><%=  @article.category.category %></small>
+    </div>
+      <h2>Comments</h2>
+      <% @article.comments.each do |comment| %>
+      <p>
+        <strong><%=  comment.account.email %></strong>
+        <%= comment.commenter %>
+      </p>
+      <% end %>
+      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+      <%= form.hidden_field :account_id, :value => current_account.id %>
+      <p>
+        <%= form.label :commente %><br>
+        <%= form.text_field :commenter %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+      <% end %>
 
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-   <li><%= link_to "back", articles_path  %></li>               
-</ul>
+<ul class="list-group">
+
+  <li class="list-group-item"><%= link_to "Edit", edit_article_path(@article), :class=>"text-decoration-none" %></li>
+  <li class="list-group-item"><%= link_to "Destroy", article_path(@article), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+  }, :class=>"text-decoration-none" %></li>
+  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

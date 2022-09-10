@@ -17,9 +17,17 @@
 .ftn{
    width: 400px; 
 }
+.ft1{
+   width: 500px  !important;
+}
 .tm{
    margin-top: 50px;!important
 }
+.ftn1{
+   width: 600px;
+}
        
-       
+.space-comment{
+   padding-left: 150px;
+}       
 
