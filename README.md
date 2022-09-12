@@ -22,4 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-sudo apt-get install imagemagick
+sudo apt-get install imagemagick# ArticleWebsite
