@@ -29,13 +29,18 @@
       <% end %>
 
 <ul class="list-group">
+   <% if current_account == @article.account %>
 
   <li class="list-group-item"><%= link_to "Edit", edit_article_path(@article), :class=>"text-decoration-none" %></li>
   <li class="list-group-item"><%= link_to "Destroy", article_path(@article), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you sure?"
   }, :class=>"text-decoration-none" %></li>
-  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>      </ul>
+  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>  
+    <% else %>
+  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>     
+  <% end %>
+   </ul>
     </div>
   </div>
 </div>
