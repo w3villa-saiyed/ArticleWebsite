@@ -1,0 +1,31 @@
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="https://www.w3villa.com/">W3Villa</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 profile-menu"> 
+        <li class="nav-item dropdown">
+           <% if account_signed_in? %>
+            <li class="fs-6 text-white mt-2"><%=  current_account.email  %></li>
+            <% end%>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if account_signed_in? %>
+            <li><%= link_to "logout", "/accounts/sign_out",  :class => " dropdown-item", method: :delete %>
+            </li>
+             <% else %>
+             <li><%= link_to "Signup", "/accounts/sign_up", :class => "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+             <li><%= link_to "Login", "/accounts/sign_in", :class => "dropdown-item" %></li>
+             <% end %>
+          </ul>
+        </li>
+     </ul>
+    </div>
+  </div>
+</nav>

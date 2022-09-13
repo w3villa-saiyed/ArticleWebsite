@@ -2,29 +2,10 @@
 <div>
 
   <div class="container-fluid position-fixed bg-white" style="z-index: 1;">
-    <div class="row">
-      <div class="col mt-4 px-5">
-        <h4>Raskai</h4>
+    <div class="row">    
+      <%= render "navbar" %>
       </div>
-      <div class="col">
-        <div class="container ">
-          <h3 class="text-center mt-3 " style="margin-right: 60px;">View Articles</h3>
-        </div>
-      </div>
-      <div class="col">
-        <ul class="list-unstyled float-end mt-3">
-          <% if account_signed_in? %>
-
-          <li><%= link_to "logout", "/accounts/sign_out",  :class => " text-dark text-decoration-none px-5 ", method: :delete %>
-           <li><%=  current_account.email  %>
-             <% else %>
-             <li><%= link_to "Signup", "/accounts/sign_up", :class => "float-end text-dark text-decoration-none px-3" %>
-              <li><%= link_to "Login", "/accounts/sign_in", :class => "float-end text-dark text-decoration-none" %>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
+    </div>
 
 
 
@@ -89,8 +70,8 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-3 mt-5" style="margin-top: 100px !important;">
-                  <div class="event mt-5 position-fixed mx-5">
+                <div class="col-3 " style="margin-top: 100px !important;">
+                  <div class="event  position-fixed mx-5">
                     <ul class="list-group list-group-flush">
                       <li class="list-group-item ">Events</li>
                       <li class="list-group-item">
