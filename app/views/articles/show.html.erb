@@ -27,6 +27,27 @@
         <%= form.submit %>
       </p>
       <% end %>
+      <div  class="" >
+
+          <div class="like-show">
+            <small>Likes :</small><%= @article.likes.count %> 
+
+          </div> 
+      
+                              <% if account_signed_in? %>
+                              <% if @article.liked?(current_account) %>
+                              <%= link_to like_path(@article), method: 'puts', disabled: true do %>
+                              
+
+                              <small><i class="fa fa-thumbs-o-up px-1 "></i> like</small>
+                              <% end %>
+                               <% else %>
+                               <%= link_to like_path(@article), method: 'puts' do %>
+                              <small class=""><i class="fa fa-thumbs-o-up"></i> like</small>
+                              <% end %>
+                              <% end %>
+                              <% end%>
+        </div><br>
 
 <ul class="list-group">
    <% if current_account == @article.account %>

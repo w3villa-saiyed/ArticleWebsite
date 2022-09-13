@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+body{
+   overflow-y: hidden;
+}
 .ftn{
    width: 400px; 
 }
@@ -28,6 +30,10 @@
 }
        
 .space-comment{
-   padding-left: 150px;
+   padding-left: 200px;
 }       
+.space-comment2{
+padding-left: 10px;
+}
+
 

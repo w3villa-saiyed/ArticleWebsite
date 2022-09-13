@@ -1,5 +1,5 @@
 
-<div>
+<div class="overflow-hidden">
 
   <div class="container-fluid position-fixed bg-white" style="z-index: 1;">
     <div class="row">
@@ -51,8 +51,8 @@
                 </div>
               </div>
             </div>
-
             <div class="col-6 ">
+            <marquee   class="mar con" height="18%" direction="down" behavior="scroll"  onmouseover="this.stop();" onmouseout="this.start();">
               <div class=" mt-5   d-flex justify-content-center">
                 <div class=" px-5">
                   <% @articles.each do |article| %>
@@ -73,21 +73,24 @@
 
                       <div class="card ">
                         <div class="card-body">
-                          <small class=""><i class="fa fa-thumbs-o-up"></i> like</small>
+
+
+                          <span class="space-comment2"></span>
                           <small class=""><i class="fa fa-commenting-o"></i> Comment</small>
 
                           <span class="space-comment"></span>
                           <small class=""><i class="fa fa-commenting-o"></i> <%= article.comments.count %> </small>
-                          <small class=""><i class="fa fa-thumbs-o-up"></i> 4 </small>
+                          <span class="space-comment2"></span>
+                          <small class=""><i class="fa fa-thumbs-o-up"></i><%= article.likes.count %> </small>
 
                         </div>
-
                       </div>
-
                       <% end %>
                     </div>
                   </div>
+                  </marquee>
                 </div>
+              
                 <div class="col-3 mt-5" style="margin-top: 100px !important;">
                   <div class="event mt-5 position-fixed mx-5">
                     <ul class="list-group list-group-flush">

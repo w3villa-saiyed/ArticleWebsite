@@ -53,6 +53,13 @@ class ArticlesController < ApplicationController
   end
 
 
+  def like
+    @article = Article.all.find(params[:id])
+    Like.create(account_id: current_account.id, article_id: @article.id)
+    redirect_to article_path(@article)
+  end
+
+
 private
 
 def article_params
