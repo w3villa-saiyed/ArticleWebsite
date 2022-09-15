@@ -1,4 +1,7 @@
-
-<h1>New Article</h1>
+<i class="fa fa-arrow-left mt-2 px-2" aria-hidden="true"></i><%= link_to "back", articles_path , :class=>"text-decoration-none text-dark px-2" %>
+<h3 class="text-center mt-3">New Article</h3>
+<div class="container border w-50 mt-2">
 
 <%= render "form", article: @article %>
+
+</div>  

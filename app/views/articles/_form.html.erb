@@ -1,24 +1,33 @@
+
+
+
 <%= form_with model: article  do |form| %>
   
+<div class="mb-3">
 
+    <%= form.label :avatar, :class=>"form-label" %><br>
+    <%= form.file_field :avatar, :class=>"form-control" %><br>
 
-    <%= form.label :avatar %><br>
-    <%= form.file_field :avatar %><br>
+</div>
+<div class="mb-3">
 
+    <%= form.label :title, :class=>"form-label" %><br>
+    <%= form.text_field :title, :class=>"form-control" %><br>
+    </div>
 
-
-    <%= form.label :title %><br>
-    <%= form.text_field :title %><br>
-    
-
+<div class="mb-3">
   
-    <%= form.label :body %><br>
-    <%= form.rich_text_area :body %><br>
-    
-     <%= form.label :Category %><br>
-    <%= form.select :category_id,  Category.all.map{|c| [c.category, c.id]} %><br>
+    <%= form.label :body, :class=>"form-label" %><br>
+    <%= form.rich_text_area :body, :class=>"form-control" %><br>
 
-  <div>
-    <%= form.submit %>
+   </div> 
+    <div class="mb-3">
+     <%= form.label :Category, :class=>"form-label" %><br>
+    <%= form.select :category_id,  Category.all.map{|c| [c.category, c.id]} %><br>
+  </div>
+
+ <div class="mb-3 ">
+    <%= form.submit 'Create Article', :class=>"btn btn-primary" %>
   </div>
 <% end %>
+

@@ -15,23 +15,23 @@
  */
 
 .ftn{
-   width: 400px; 
+   width: 350px; 
 }
 .ft1{
-   width: 500px  !important;
+   width: 350px  !important;
 }
 .tm{
    margin-top: 50px;!important
 }
 .ftn1{
-   width: 600px;
+   width: 350px;
 }
        
 .space-comment{
-   padding-left: 200px;
+   padding-left: 100px;
 }       
 .space-comment2{
-padding-left: 10px;
+padding-left: 3px;
 }
 
 .profile-menu .dropdown-menu {
@@ -46,3 +46,24 @@ padding-left: 10px;
     border-bottom: 0.3em solid;
 }
  
+ .comment{
+   padding-left: 258px;
+ }
+ .fa-lg{
+   font-size: 15px;
+ }
+ .likes{
+   text-decoration: none;
+   font-size: 15px;
+ }
+ .ellipsis{
+   font-size: 35px;
+   margin-top: -20px;
+ }
+
+
+
+
+
+
+

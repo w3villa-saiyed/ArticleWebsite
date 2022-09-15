@@ -1,79 +1,112 @@
 
 <div class="container-fluid position-fixed bg-white" style="z-index: 1;">
     <div class="row">
-         
      <%= render "navbar" %>
-      
-      </div>
     </div>
+</div><br>
+    <div class="mt-5">
+        <ul class="list-group">
+   <% if current_account != @article.account %> 
+  <li class="list-group-item "><i class="fa fa-arrow-left" aria-hidden="true"></i><%= link_to "back", articles_path , :class=>"text-decoration-none text-dark px-2" %></li>     
+  <% end %>
+   </ul>
 
-<h1 class="text-center">Show Articles</h1>
+    </div>
+    <div class="container-fluid text-center mt-5">
+      <small><strong>Created by</strong></small><br>
+      <%= @article.account.email if @article.account %>
+      <p>
+      On<%= @article.created_at.strftime("%B %d %Y, %l:%M%P") %>
+      </p>
+    </div>      
 <div class="container">
-  <div class="card  mt-5 ">
-    <div class="card-body">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+     <div class="container mt-5 ">
+      <div class="card  mt-5 " style="width: 40rem;">
+      <div class="card-body">
       <small><%= image_tag @article.avatar, :class=>"card-img-top"  if @article.avatar.attached? %></small>
       <div class="card-body">
-      <small><strong>Title :</strong> <%=  @article.title %></small><br>
+      <small> <%=  @article.title %></small><br>
       <div class="container-fluid">
-      <small><strong>Body :</strong><%=  @article.body %></small>
+      <small><%=  @article.body %></small>
+
+   
       </div>
       <small><strong>Category :</strong><%=  @article.category.category %></small>
-    </div>
-      <h2>Comments</h2>
-      <% @article.comments.each do |comment| %>
-      <p>
-        <strong><%=  comment.account.email %></strong>
-        <%= comment.commenter %>
-      </p>
-      <% end %>
-      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
-      <%= form.hidden_field :account_id, :value => current_account.id %>
-      <p>
-        <%= form.label :commente %><br>
-        <%= form.text_field :commenter %>
-      </p>
-      <p>
-        <%= form.submit %>
-      </p>
-      <% end %>
-      <div  class="" >
-
-          <div class="like-show">
-            <small>Likes :</small><%= @article.likes.count %> 
-
-          </div> 
-      
-                              <% if account_signed_in? %>
-                              <% if @article.liked?(current_account) %>
-                              <%= link_to like_path(@article), method: 'puts', disabled: true do %>
-                              
-
-                              <small><i class="fa fa-thumbs-o-up px-1 "></i> like</small>
-                              <% end %>
-                               <% else %>
-                               <%= link_to like_path(@article), method: 'puts' do %>
-                              <small class=""><i class="fa fa-thumbs-o-up"></i> like</small>
-                              <% end %>
-                              <% end %>
-                              <% end%>
-        </div><br>
-
-<ul class="list-group">
-   <% if current_account == @article.account %>
-
-  <li class="list-group-item"><%= link_to "Edit", edit_article_path(@article), :class=>"text-decoration-none" %></li>
-  <li class="list-group-item"><%= link_to "Destroy", article_path(@article), data: {
+              <div class ="link-show float-end">
+     <% if current_account == @article.account %> 
+      <li class="list-group"><%= link_to "Edit", edit_article_path(@article), :class=>"text-decoration-none" %></li>
+  <li class="list-group"><%= link_to "Destroy", article_path(@article), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you sure?"
   }, :class=>"text-decoration-none" %></li>
-  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>  
-    <% else %>
-  <li class="list-group-item "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li>     
+  <li class="list-group "><%= link_to "back", articles_path , :class=>"text-decoration-none" %></li> 
   <% end %>
-   </ul>
+  </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div class="col">
     </div>
   </div>
 </div>
+
+  
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col comment">
+        <h2>Comments (<%= @article.comments.count %>)</h2>
+        <% @article.comments.each do |comment| %>
+        <p><strong><%=  comment.account.email %>:</strong><%= comment.commenter %></p>
+        <% end %>
+        <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+        <%= form.hidden_field :account_id, :value => current_account.id %>
+        <p><%= form.label :comment %><br><%= form.text_field :commenter %></p>
+        <p><%= form.submit %></p>
+         <div class="col ">   
+        <% end %>
+         </div>
+      <div class="like-show">
+          <Strong><h6>Likes (<%= @article.likes.count %> )</h6></strong>
+        </div> 
+        <% if account_signed_in? %>
+            <% if @article.liked?(current_account) %>
+                <%= link_to like_path(@article), :class=>"likes", method: 'puts', disabled: true do %>
+                <small><i class="fa fa-thumbs-o-up px-1  fa-lg mt-3"></i> like</small>
+            <% end %>
+            <% else %>
+              <%= link_to like_path(@article), :class=>"likes", method: 'puts' do %>
+              <small class=""><i class="fa fa-thumbs-o-up fa-lg mt-3"></i> like</small>
+              <% end %>
+            <% end %>
+          <% end%>  
+        </div>
+  </div>
+</div>      
+
+<footer class="bg-dark text-center text-white mt-5" >
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white" href="">W3Villa.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+
+
+
+
+    
+         
+      
+                              
 
 
 
